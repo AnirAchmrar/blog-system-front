@@ -1,0 +1,30 @@
+<div>
+  <form [formGroup]="postForm" class="flex flex-col items-center m-2">
+    <mat-form-field class="w-full">
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput type="text" required />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Content</mat-label>
+      <textarea
+        formControlName="content"
+        matInput
+        type="text"
+        required
+      ></textarea>
+    </mat-form-field>
+    <div class="flex flex-row items-start w-full">
+      <div class="">
+        <button
+          [disabled]="postForm.invalid"
+          mat-raised-button
+          color="primary"
+          (click)="createPost()"
+        >
+          Create
+        </button>
+        <button mat-button color="primary" (click)="close()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

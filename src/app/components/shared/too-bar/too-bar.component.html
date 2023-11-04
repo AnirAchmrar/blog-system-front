@@ -1,0 +1,23 @@
+<mat-toolbar
+  *ngIf="isLoggedIn"
+  color="primary"
+  class="drop-shadow-lg flex justify-between"
+>
+  <button mat-button routerLink="home"><h1>Blog System</h1></button>
+
+  <div>
+    <button mat-button [matMenuTriggerFor]="menu">
+      {{ user ? user.username : "username" }}
+    </button>
+    <mat-menu #menu="matMenu">
+      <button
+        mat-menu-item
+        class="mb-2"
+        *ngIf="isLoggedIn"
+        (click)="authService.logOut()"
+      >
+        <div class="text-sm">Logout</div>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

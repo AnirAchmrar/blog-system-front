@@ -1,0 +1,35 @@
+<div class="flex flex-col items-center mt-20">
+  <div class="font-normal text-xl mb-10 drop-shadow-lg">Login</div>
+  <div>
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="login()"
+      class="flex flex-col space-y-5"
+    >
+      <mat-form-field class="drop-shadow-lg">
+        <mat-label>Username</mat-label>
+        <input formControlName="username" matInput />
+        <mat-error *ngIf="username?.errors?.['required']">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="drop-shadow-lg">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput type="password" />
+        <mat-error *ngIf="password?.errors?.['required']">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+      <div class="self-center drop-shadow-lg">
+        <button
+          [disabled]="loginForm.invalid"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

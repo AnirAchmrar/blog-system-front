@@ -1,0 +1,56 @@
+<div class="flex flex-col w-full h-full">
+  <div class="basis-1/5 flex flex-row justify-between">
+    <div>
+      <mat-button-toggle-group
+        value="allPosts"
+        (change)="selectPostsType($event)"
+        class="m-2"
+      >
+        <mat-button-toggle value="allPosts">All posts</mat-button-toggle>
+        <mat-button-toggle value="myPosts">My posts</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="flex flex-row-reverse">
+      <button class="m-2" mat-raised-button color="primary" (click)="addPost()">
+        Add post
+      </button>
+    </div>
+  </div>
+
+  <div class="basis-3/5 grid grid-cols-3 gap-2 p-10">
+    <mat-card
+      (click)="openPost(post)"
+      class="custom-card drop-shadow-lg"
+      *ngFor="let post of obs | async"
+    >
+      <mat-card-header>
+        <mat-card-title class="capitalize">{{ post.title }}</mat-card-title>
+        <mat-card-subtitle
+          >Author: {{ post.author.authorName }}</mat-card-subtitle
+        >
+        <mat-card-subtitle
+          >Published: {{ post.publicationDate }}</mat-card-subtitle
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          {{
+            post.content.length > 100
+              ? (post.content | slice : 0 : 100) + "..."
+              : post.content
+          }}
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="basis-1/5 sticky bottom-0 right-0">
+    <mat-paginator
+      (page)="nextPage($event)"
+      [pageSize]="6"
+      [pageIndex]="pageIndex"
+      [hidePageSize]="true"
+      [length]="totalElements"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>

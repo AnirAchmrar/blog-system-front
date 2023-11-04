@@ -1,0 +1,19 @@
+mat-paginator{
+    background-color: transparent;
+}
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+.custom-card {
+  transition: background-color 0.3s; /* Add a smooth transition effect */
+}
+
+.custom-card:hover {
+  cursor: pointer;
+  background-color: lightgray; /* Change to the desired color on hover */
+}
+
+  
+  
