@@ -34,6 +34,7 @@ export class InterceptorService implements HttpInterceptor {
     return next.handle(jwtToken).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
+          localStorage.clear();
           this.router.navigate(['/login/']);
         } else if (error.status === 400) {
           this.snackBar.open('Something Goes Wrong!', '', {
@@ -41,6 +42,7 @@ export class InterceptorService implements HttpInterceptor {
           });
           this.router.navigate(['/home/']);
         } else {
+          localStorage.clear();
           this.router.navigate(['/login/']);
         }
         return throwError(error);
